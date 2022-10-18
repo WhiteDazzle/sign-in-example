@@ -2,11 +2,17 @@ import { useState } from "react";
 
 import styles from "./signIn-form.module.scss";
 import FormInput from "../../blocks/form-input";
-import {emailValidation, passwordValidation} from "../../../helpers/input-validation";
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../../helpers/input-validation";
+import {emailValidationPattern} from "../../../helpers/vars/patterns";
 
 const SignInForm = () => {
   const [emailValue, setEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [emailValidationMessage, setEmailValidationMessage] = useState("");
+  const [passwordValidationMessage, setPasswordValidationMessage] = useState("");
   return (
     <form className={styles["signIn-form"]}>
       <h1 className={styles.title}> welcome</h1>
@@ -17,7 +23,10 @@ const SignInForm = () => {
           name="email"
           type="email"
           placeholder="введите email"
-          validationCheck={emailValidation}
+          validationMessage={emailValidationMessage}
+          setValidateMessage={setEmailValidationMessage}
+          required
+          pattern={emailValidationPattern}
         />
       </div>
       <div className={styles["input-wrapper"]}>
@@ -27,10 +36,22 @@ const SignInForm = () => {
           name="password"
           type="password"
           placeholder="введите пароль"
-          validationCheck={passwordValidation}
+          validationMessage={passwordValidationMessage}
+          setValidateMessage={setPasswordValidationMessage}
+          required
+          minLength={6}
+          maxLength={40}
         />
       </div>
-      <input type="submit" value="Login" className={styles["input-submit"]} />
+      <input
+        type="submit"
+        value="Login"
+        className={styles["input-submit"]}
+        onClick={() => {
+            setEmailValidationMessage(emailValidation(emailValue))
+            setPasswordValidationMessage(passwordValidation(passwordValue))
+        }}
+      />
     </form>
   );
 };
