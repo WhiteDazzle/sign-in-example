@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import styles from "./signIn-form.module.scss";
-import FormInput from "../../blocks/form-input";
+import FormInput from "../../blocks/form-input/form-input";
 import {
   emailValidation,
   passwordValidation,

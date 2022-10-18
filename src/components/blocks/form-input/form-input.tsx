@@ -37,7 +37,7 @@ const FormInput = (props: props) => {
         name={name}
         type={type}
         placeholder={placeholder}
-        className={styles.input}
+        className={`${styles.input} ${styles[`input--${name}`]}`}
         maxLength={maxLength}
         required={required}
         minLength={minLength}
