@@ -5,7 +5,7 @@ import styles from './app.module.scss';
 function App() {
   return (
     <div className={styles.app}>
-      <div className={styles['app__signIn-form-wrapper']}>
+      <div className={styles['signIn-form-wrapper']}>
           <SignInForm/>
       </div>
     </div>
