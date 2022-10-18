@@ -1,5 +1,6 @@
 import styles from "./form-input.module.scss";
 import { useState } from "react";
+import PasswordCheckboxView from "../password-checkbox-view/password-checkbox-view";
 
 type props = {
   type: string;
@@ -29,15 +30,16 @@ const FormInput = (props: props) => {
     minLength,
     pattern,
   } = props;
+  const [inputType, changeInputType] = useState(type)
   const [underlineFocusClass, setUnderlineFocusClass] = useState("");
   return (
     <label className={styles.label}>
       <input
         value={value}
         name={name}
-        type={type}
+        type={inputType}
         placeholder={placeholder}
-        className={`${styles.input} ${styles[`input--${name}`]}`}
+        className={styles.input}
         maxLength={maxLength}
         required={required}
         minLength={minLength}
@@ -53,6 +55,10 @@ const FormInput = (props: props) => {
           setUnderlineFocusClass("underline--defocus");
         }}
       />
+      <div
+        className={`${styles["input-img"]} ${styles[`input-img--${name}`]}`}
+      ></div>
+      {name === "password" && <PasswordCheckboxView changeInputType={changeInputType}/>}
       <div className={styles["underline-wrapper"]}>
         <div className={styles[underlineFocusClass]}></div>
       </div>

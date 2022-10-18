@@ -8,15 +8,13 @@
   0 1.46302px 7.04911px rgba(0, 0, 0, 0.0282725),
   0 0.608796px 2.93329px rgba(0, 0, 0, 0.0196802);
 }
-
 %button-box {
+  cursor: pointer;
   border-radius: 10px;
   border: none;
-  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
-  &:focus {
-    scale: 97%;
-    outline: none;
-    box-shadow: none
+  outline: none;
+  &:focus-visible {
+    border: 4px solid #9abbce;
   }
 }
 %input-box {
@@ -36,3 +34,5 @@ $background-underline-focus: #1890FF;
 
 $text-color-main: #1890FF;
 $text-color-button-submit: white;
+
+$border-color-button-focus: #9abbce;
