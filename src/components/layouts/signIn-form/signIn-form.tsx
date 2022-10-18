@@ -9,14 +9,13 @@ const SignInForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
   return (
     <form className={styles["signIn-form"]}>
-      <h1 className={styles.title}> sign in</h1>
+      <h1 className={styles.title}> welcome</h1>
       <div className={styles["input-wrapper"]}>
         <FormInput
           value={emailValue}
           changeValue={setEmailValue}
           name="email"
           type="email"
-          title="email"
           placeholder="введите email"
           validationCheck={emailValidation}
         />
@@ -27,7 +26,6 @@ const SignInForm = () => {
           changeValue={setPasswordValue}
           name="password"
           type="password"
-          title="password"
           placeholder="введите пароль"
           validationCheck={passwordValidation}
         />

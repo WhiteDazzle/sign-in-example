@@ -3,7 +3,6 @@ import {useState} from "react";
 
 type props = {
     type: string;
-    title: string;
     placeholder: string;
     name: string;
     value: string;
@@ -12,14 +11,23 @@ type props = {
 }
 
 const FormInput = (props:props) => {
+    const [underlineClass, setUnderlineClass] = useState('')
     const [validationMessage, setValidateMessage] = useState('')
-    const {type, title, placeholder, name, value, changeValue, validationCheck} = props;
+    const {type, placeholder, name, value, changeValue, validationCheck} = props;
     return <label className={styles.label}>
-        <h2 className={styles.title}> {title} </h2>
         <input value={value} name={name} type={type} placeholder={placeholder} required className={styles.input}
+               onFocus={()=> {setUnderlineClass('underline--focus')}
+               }
                onChange={(e)=> {changeValue(e.target.value)
                    setValidateMessage('')}}
-               onBlur={()=> setValidateMessage(validationCheck(value))}/>
+               onBlur={()=> {
+                   setValidateMessage(validationCheck(value));
+                   setUnderlineClass('underline--defocus')
+               }}/>
+        <div className={styles['underline-wrapper']}>
+            <div className={styles[underlineClass]}></div>
+            <div className={validationMessage && styles['underline--error']}></div>
+        </div>
         {validationMessage && <div className={styles['error-message']}>{validationMessage}</div>}
     </label>
 }
