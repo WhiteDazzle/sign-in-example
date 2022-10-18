@@ -63,6 +63,19 @@
     animation-delay: 0.5s;
     background: red;
   }
+  &--clear-error {
+    position: relative;
+    top: -3px;
+    z-index: 1;
+    height: 3px;
+    width: 0;
+    animation: unload 0.5s normal forwards;
+    background: red;
+  }
+
+}
+.animation-delay {
+  animation-delay: 0.5s;
 }
 
 .error-message {
