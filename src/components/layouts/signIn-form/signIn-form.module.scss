@@ -31,4 +31,7 @@
   font-size: 20px;
   color: $text-color-button-submit;
   background: $background-button-submit;
+  &:hover {
+    scale: 101%;
+  }
 }

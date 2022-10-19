@@ -29,6 +29,9 @@
   background-size: 25px 25px;
   background-repeat: no-repeat;
   background-position: 3% 50%;
+  &:hover {
+    scale: 110%;
+  }
   &--email {
       background-image: $email-image;
   }
