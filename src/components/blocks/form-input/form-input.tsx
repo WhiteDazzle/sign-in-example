@@ -58,7 +58,7 @@ const FormInput = (props: props) => {
       <div
         className={`${styles["input-img"]} ${styles[`input-img--${name}`]}`}
       ></div>
-      {name === "password" && <PasswordCheckboxView changeInputType={changeInputType}/>}
+      <div className={styles['input-checkbox-wrapper']}>{name === "password" && <PasswordCheckboxView changeInputType={changeInputType}/>}</div>
       <div className={styles["underline-wrapper"]}>
         <div className={styles[underlineFocusClass]}></div>
       </div>

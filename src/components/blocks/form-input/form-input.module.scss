@@ -54,6 +54,12 @@
   }
 }
 
+.input-checkbox-wrapper {
+  position: absolute;
+  right: 30px;
+  top: -11px;
+}
+
 .error-message {
   color: red;
   &--hidden {
