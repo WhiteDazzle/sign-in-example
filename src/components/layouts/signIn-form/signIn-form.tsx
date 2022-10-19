@@ -3,8 +3,8 @@ import { useState } from "react";
 import styles from "./signIn-form.module.scss";
 import FormInput from "../../blocks/form-input/form-input";
 import {
-  emailValidation,
-  passwordValidation,
+    validateEmail,
+    validatePassword,
 } from "../../../helpers/input-validation";
 import {emailValidationPattern} from "../../../helpers/vars/patterns";
 
@@ -19,12 +19,14 @@ const SignInForm = () => {
       <div className={styles["input-wrapper"]}>
         <FormInput
           value={emailValue}
-          changeValue={setEmailValue}
+          onChange={({target:{value}})=> {
+              setEmailValue(value)
+              setEmailValidationMessage('')
+          }}
           name="email"
           type="email"
           placeholder="введите email"
           validationMessage={emailValidationMessage}
-          setValidateMessage={setEmailValidationMessage}
           required
           pattern={emailValidationPattern}
         />
@@ -32,12 +34,14 @@ const SignInForm = () => {
       <div className={styles["input-wrapper"]}>
         <FormInput
           value={passwordValue}
-          changeValue={setPasswordValue}
+          onChange={({target:{value}})=> {
+              setPasswordValue(value)
+              setPasswordValidationMessage('')
+          }}
           name="password"
           type="password"
           placeholder="введите пароль"
           validationMessage={passwordValidationMessage}
-          setValidateMessage={setPasswordValidationMessage}
           required
           minLength={6}
           maxLength={40}
@@ -47,9 +51,10 @@ const SignInForm = () => {
         type="submit"
         value="Login"
         className={styles["input-submit"]}
-        onClick={() => {
-            setEmailValidationMessage(emailValidation(emailValue))
-            setPasswordValidationMessage(passwordValidation(passwordValue))
+        onClick={(e) => {
+            e.preventDefault()
+            setEmailValidationMessage(validateEmail(emailValue))
+            setPasswordValidationMessage(validatePassword(passwordValue))
         }}
       />
     </form>
