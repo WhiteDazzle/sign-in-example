@@ -1,20 +1,23 @@
-import { useState } from "react";
 import styles from "./password-checkbox-view.module.scss";
 
-const PasswordCheckboxView = ({changeInputType}: {changeInputType: (value:string) => void}) => {
-  const [checked, changeChecked] = useState(false);
+const PasswordCheckboxView = ({
+  setInputType,
+  type,
+}: {
+    setInputType: (value: string) => void;
+  type: string | undefined;
+}) => {
+    const checked = type === "password";
   const onChangeCheckbox = () => {
-    changeChecked(!checked)
-    console.log(checked)
-    if(checked) changeInputType('text')
-    if(!checked) changeInputType('password')
-  }
+    if (checked) setInputType("text");
+    else setInputType("password");
+  };
   return (
-    <label className={styles['label']}>
+    <label className={styles["label"]}>
       <input
         type="checkbox"
         className={styles["checkbox-password-input"]}
-        checked={checked}
+        checked={type==='password'}
         onChange={onChangeCheckbox}
       />
       <div
@@ -28,4 +31,4 @@ const PasswordCheckboxView = ({changeInputType}: {changeInputType: (value:string
   );
 };
 
-export default PasswordCheckboxView
+export default PasswordCheckboxView;
