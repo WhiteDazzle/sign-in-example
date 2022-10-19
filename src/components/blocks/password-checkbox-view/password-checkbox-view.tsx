@@ -23,8 +23,8 @@ const PasswordCheckboxView = ({
       <div
         className={`${styles["checkbox-password"]} ${
           checked
-            ? styles["checkbox-password--view"]
-            : styles["checkbox-password--no-view"]
+            ? styles["checkbox-password--no-view"]
+            : styles["checkbox-password--view"]
         }`}
       ></div>
     </label>
