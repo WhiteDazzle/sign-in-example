@@ -7,7 +7,7 @@ function App() {
     <div className={styles.app}>
       <div className={styles['signIn-form-wrapper']}>
           <SignInForm/>
-         <input type="file" id="fileProfile2" name="fileProfile2"  accept=".jpeg, .png"/>
+         <input type="file" id="fileProfile2" name="fileProfile2"  accept=".jpeg, .png, .pdf"/>
       </div>
     </div>
   );
