@@ -13,6 +13,24 @@ const SignInForm = () => {
   const [passwordValue, setPasswordValue] = useState("");
   const [emailValidationMessage, setEmailValidationMessage] = useState("");
   const [passwordValidationMessage, setPasswordValidationMessage] = useState("");
+  var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+  }
+
+  function success(pos: any) {
+    var crd = pos.coords;
+
+    console.log('Ваше текущее местоположение:');
+    console.log(`Широта: ${crd.latitude}`);
+    console.log(`Долгота: ${crd.longitude}`);
+    console.log(`Плюс-минус ${crd.accuracy} метров.`);
+  }
+
+  function error(err: any) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+  }
   return (
     <form className={styles["signIn-form"]}>
       <h1 className={styles.title}> welcome</h1>
@@ -53,10 +71,20 @@ const SignInForm = () => {
         className={styles["input-submit"]}
         onClick={(e) => {
             e.preventDefault()
+            e.stopPropagation()
             setEmailValidationMessage(validateEmail(emailValue))
             setPasswordValidationMessage(validatePassword(passwordValue))
         }}
       />
+      <button
+        type='button'
+        className={styles["input-submit"]}
+        onClick={() => {
+          navigator.geolocation.getCurrentPosition(success, error, options)
+        }}
+      >
+        получить геолокацию в консоли
+      </button>
     </form>
   );
 };
