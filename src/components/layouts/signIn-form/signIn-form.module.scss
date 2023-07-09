@@ -3,7 +3,7 @@
 .signIn-form {
   box-sizing: border-box;
   padding: 20px 32px 20px 32px;
-  height: 100%;
+  height: 800px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -34,4 +34,10 @@
   &:hover {
     scale: 101%;
   }
+}
+
+.geo-text {
+  color: $text-color-main;
+  font-size: 20px;
+  margin: 10px;
 }
