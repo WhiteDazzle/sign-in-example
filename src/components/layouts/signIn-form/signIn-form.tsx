@@ -14,6 +14,7 @@ const SignInForm = () => {
   const [emailValidationMessage, setEmailValidationMessage] = useState("");
   const [passwordValidationMessage, setPasswordValidationMessage] = useState("");
   const [geo, setGeo] = useState<string[]>([])
+  const [err, setErr] = useState<any>('')
   var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -28,6 +29,7 @@ const SignInForm = () => {
       `Долгота: ${crd.longitude}`,
       `Плюс-минус ${crd.accuracy} метров.`
     ])
+    setErr('')
     console.log('Ваше текущее местоположение:');
     console.log(`Широта: ${crd.latitude}`);
     console.log(`Долгота: ${crd.longitude}`);
@@ -35,8 +37,9 @@ const SignInForm = () => {
   }
 
   function error(err: any) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+    setErr(err)
   }
+  console.log(err)
   return (
     <form className={styles["signIn-form"]}>
       <h1 className={styles.title}> welcome</h1>
@@ -91,7 +94,12 @@ const SignInForm = () => {
       >
         получить геолокацию в консоли
       </button>
-      {geo.map((current: string)=> <p className={styles['geo-text']}>{current}</p>)}
+      {err && <>
+        <p className={styles['err-text']}>ошибка. для подробностей смотреть консоль</p>
+        <p className={styles['err-text']}>code: {err.code}</p>
+        <p className={styles['err-text']}>message: {err.message}</p>
+      </>}
+      {!err && geo.map((current: string)=> <p className={styles['geo-text']}>{current}</p>)}
     </form>
   );
 };
